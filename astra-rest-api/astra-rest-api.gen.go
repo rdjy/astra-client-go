@@ -162,7 +162,7 @@ type IndexOptions struct {
 }
 
 // IndexResponse The data returned by the index fetch.
-type IndexResponse = []struct {
+type IndexResponse struct {
 	IndexName    *string         `json:"index_name,omitempty"`
 	KeyspaceName *string         `json:"keyspace_name,omitempty"`
 	Kind         *string         `json:"kind,omitempty"`
