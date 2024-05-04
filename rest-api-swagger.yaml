@@ -213,7 +213,10 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/Table"
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/Table"
         '401':
           "$ref": "#/components/responses/401"
         '404':

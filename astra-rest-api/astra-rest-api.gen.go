@@ -3734,7 +3734,9 @@ func (r DeleteTableResponse) StatusCode() int {
 type GetTableResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Table
+	JSON200      *struct {
+		Data *Table `json:"data,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -4785,7 +4787,9 @@ func ParseGetTableResponse(rsp *http.Response) (*GetTableResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Table
+		var dest struct {
+			Data *Table `json:"data,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
