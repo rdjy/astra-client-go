@@ -462,7 +462,10 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                type: object
+                properties:
+                  success:
+                    type: boolean
                 example:
                   success: true
         '400':

@@ -3917,7 +3917,9 @@ func (r GetIndexesResponse) StatusCode() int {
 type CreateIndexResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON201      *string
+	JSON201      *struct {
+		Success *bool `json:"success,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -4989,7 +4991,9 @@ func ParseCreateIndexResponse(rsp *http.Response) (*CreateIndexResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest string
+		var dest struct {
+			Success *bool `json:"success,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
