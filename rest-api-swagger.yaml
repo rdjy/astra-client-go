@@ -596,7 +596,10 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/TypeResponse"
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/TypeResponse"
         '401':
           "$ref": "#/components/responses/401"
         '404':
