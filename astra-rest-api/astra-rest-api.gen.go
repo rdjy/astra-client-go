@@ -4048,7 +4048,9 @@ func (r DeleteTypeResponse) StatusCode() int {
 type GetTypeResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *TypeResponse
+	JSON200      *struct {
+		Data *TypeResponse `json:"data,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -5117,7 +5119,9 @@ func ParseGetTypeResponse(rsp *http.Response) (*GetTypeResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest TypeResponse
+		var dest struct {
+			Data *TypeResponse `json:"data,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
