@@ -1236,26 +1236,25 @@ components:
           default: false
           example: true
     IndexResponse:
-      type: array
+      type: object
       description: The data returned by the index fetch.
-      items:
-        properties:
-          keyspace_name:
-            type: string
-            example: users_keyspace
-          options:
-            type: array
-            items:
-              "$ref": "#/components/schemas/IndexOptions"
-          table_name:
-            type: string
-            example: users
-          index_name:
-            type: string
-            example: fav_books_idx
-          kind:
-            type: string
-            example: COMPOSITES
+      properties:
+        keyspace_name:
+          type: string
+          example: users_keyspace
+        options:
+          type: array
+          items:
+            "$ref": "#/components/schemas/IndexOptions"
+        table_name:
+          type: string
+          example: users
+        index_name:
+          type: string
+          example: fav_books_idx
+        kind:
+          type: string
+          example: COMPOSITES
     IndexOptions:
       type: object
       properties:
